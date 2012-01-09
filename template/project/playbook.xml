@@ -172,14 +172,22 @@
     
     <target name="generate-cod-name">
         <xmlproperty file="www/config.xml" prefix="config.xml" />
-        <propertyregex property="cod.name"
+        <echo message="Input name: ${config.xml.widget.name}.cod" />
+        <echo message="Remove non-word characters" />
+        <propertyregex property="intermediate.name"
                        input="${config.xml.widget.name}"
                        regexp="(\W+)"
                        replace=""
                        casesensitive="false"
                        global="true"
                        defaultValue="${config.xml.widget.name}" />
-        <echo message="Generated name: ${cod.name}.bar" />
+        <echo message="Intermediate name: ${intermediate.name}.cod" />
+        <echo message="Ensure initial character is a letter" />
+        <propertyregex property="cod.name"
+                       input="${intermediate.name}"
+                       regexp="([A-Za-z]\w+)"
+                       select="\1" />
+        <echo message="Generated name: ${cod.name}.cod" />
     </target>
 
     <!-- HELP -->

@@ -228,7 +228,7 @@
         <echo message="Remove non-word characters" />
         <propertyregex property="intermediate.name"
                        input="${config.xml.widget.name}"
-                       regexp="(\W+)"
+                       regexp="([^A-Za-z0-9]+)"
                        replace=""
                        casesensitive="false"
                        global="true"
